@@ -1,4 +1,4 @@
-package Graphics.Base;
+package Elevator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +24,7 @@ public class MainPanel extends Canvas {
         }
 
         Graphics g = bs.getDrawGraphics();
-        g.fillRect(0, 0, getWidth(), getHeight());
+        //g.fillRect(0, 0, getWidth(), getHeight());
 
         int width = screen.getWidth();
         int height = screen.getHeight();

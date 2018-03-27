@@ -1,4 +1,4 @@
-package Graphics.Base;
+package Elevator;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -32,6 +32,10 @@ public class InputHandler implements KeyListener {
 	public Key left = new Key();
 	public Key right = new Key();
 	public Key esc = new Key();
+	public Key one = new Key();
+	public Key two = new Key();
+	public Key three = new Key();
+	public Key four = new Key();
 
 	public void releaseAll() {
 		for (int i = 0; i < keys.size(); i++) {
@@ -62,6 +66,15 @@ public class InputHandler implements KeyListener {
 		if (ke.getKeyCode() == KeyEvent.VK_LEFT) left.toggle(pressed);
 		if (ke.getKeyCode() == KeyEvent.VK_RIGHT) right.toggle(pressed);
 		if (ke.getKeyCode() == KeyEvent.VK_ESCAPE) esc.toggle(pressed);
+		if (ke.getKeyCode() == KeyEvent.VK_NUMPAD1) one.toggle(pressed);
+		if (ke.getKeyCode() == KeyEvent.VK_NUMPAD2) two.toggle(pressed);
+		if (ke.getKeyCode() == KeyEvent.VK_NUMPAD3) three.toggle(pressed);
+		if (ke.getKeyCode() == KeyEvent.VK_NUMPAD4) four.toggle(pressed);
+		if (ke.getKeyCode() == 0x31) one.toggle(pressed);
+		if (ke.getKeyCode() == 0x32) two.toggle(pressed);
+		if (ke.getKeyCode() == 0x33) three.toggle(pressed);
+		if (ke.getKeyCode() == 0x34) four.toggle(pressed);
+
 
 	}
 

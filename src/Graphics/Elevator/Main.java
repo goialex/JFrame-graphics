@@ -1,4 +1,4 @@
-package Graphics.Base;
+package Elevator;
 
 import java.awt.event.WindowEvent;
 
@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args){
 
-        CustomWindow window = new CustomWindow("Main", 400, 400);
+        CustomWindow window = new CustomWindow("Main", 500, 500);
         MainPanel pane = new MainPanel(window);
         DeltaTime fps = new DeltaTime(60);
 
@@ -31,5 +31,4 @@ public class Main {
 
         window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
     }
-
 }

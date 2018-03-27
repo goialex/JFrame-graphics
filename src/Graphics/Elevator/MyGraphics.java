@@ -1,4 +1,4 @@
-package Graphics.Base;
+package Elevator;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

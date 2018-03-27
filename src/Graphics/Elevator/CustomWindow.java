@@ -1,4 +1,4 @@
-package Graphics.Base;
+package Elevator;
 
 import javax.swing.*;
 import java.awt.*;
