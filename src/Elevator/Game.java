@@ -11,8 +11,8 @@ public class Game {
     private final Floor[] floors;
     private final int floorWidth = 50;
     private final int floorHeight = 60;
-    private final Rectangle firstFloor = new Rectangle(0, 50, floorWidth, floorHeight);
-    private final int nrFloors = 5;
+    private final Rectangle firstFloor = new Rectangle(50, 50, floorWidth, floorHeight);
+    private final int nrFloors = 6;
     private final Elev elevator;
 
 
@@ -61,6 +61,11 @@ public class Game {
         if (input.five.down){
             elevator.addDestination(4);
         }
+        if (input.six.down){
+            elevator.addDestination(5);
+        }
+
+
         elevator.update();
 
         for(Floor instance : floors){
@@ -77,6 +82,8 @@ public class Game {
             f.draw(gfx);
         }
         elevator.draw(gfx);
+
+        Floor.drawTop(gfx, firstFloor);
     }
 
     private void drawBackground(){

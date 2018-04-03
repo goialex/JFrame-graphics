@@ -24,6 +24,23 @@ public class MyGraphics{
         drawRect(x, y, 1,1, c);
     }
 
+    public void drawRectCoord(int x1, int y1, int x2, int y2, Color c){
+
+        if (x1 > x2){
+            int temp = x1;
+            x2 = x1;
+            x1 = temp;
+        }
+
+        if (y1 > y2){
+            int temp = y1;
+            y2 = y1;
+            y1 = temp;
+        }
+
+        drawRect(new Rectangle(x1, y1, x2 - x1, y2 - y1), c);
+    }
+
     public void drawRect(Rectangle rect, Color c){
         drawRect(rect.x, rect.y, rect.width, rect.height, c);
     }

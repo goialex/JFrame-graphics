@@ -106,6 +106,7 @@ public class Elev {
         gfx.drawRect(ScreenRepres.x, ScreenRepres.y, ScreenRepres.width, 3, Color.ORANGE);
         doors.draw(gfx, new Point(ScreenRepres.x + ScreenRepres.width - 3, ScreenRepres.y), Color.ORANGE);
         gfx.drawRect(ScreenRepres.x , ScreenRepres.y + ScreenRepres.height - 3, ScreenRepres.width, 3, Color.ORANGE);
+        gfx.drawRectCoord(firstLevel.x + (firstLevel.width / 2) - 2, firstLevel.y, firstLevel.x + (firstLevel.width / 2) + 2, ScreenRepres.y, Color.ORANGE);
     }
 
     public void update(){

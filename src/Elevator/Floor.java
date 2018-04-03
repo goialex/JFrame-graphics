@@ -5,9 +5,10 @@ import java.awt.*;
 public class Floor {
 
     public final Button callButton;
-    InputHandler input;
+    private final static Color COL = Color.BLUE;
+    private InputHandler input;
     private Rectangle screenReprez;
-    private final int THICKNESS = 5;
+    private final static int THICKNESS = 5;
 
     private final int floor;
 
@@ -30,9 +31,14 @@ public class Floor {
     public void draw(MyGraphics gfx){
 
         callButton.draw(gfx);
-        gfx.drawRect(screenReprez.x, screenReprez.y, THICKNESS, screenReprez.height, Color.BLUE);
-        gfx.drawRect(screenReprez.x + screenReprez.width - THICKNESS, screenReprez.y, THICKNESS, screenReprez.height / 5, Color.BLUE);
-        gfx.drawRect(screenReprez.x + screenReprez.width - THICKNESS, screenReprez.y + screenReprez.height - THICKNESS, 200, THICKNESS, Color.BLUE);
+        gfx.drawRect(screenReprez.x, screenReprez.y, THICKNESS, screenReprez.height, COL);
+        gfx.drawRect(screenReprez.x + screenReprez.width - THICKNESS, screenReprez.y, THICKNESS, screenReprez.height / 5, COL);
+        gfx.drawRect(screenReprez.x + screenReprez.width - THICKNESS, screenReprez.y + screenReprez.height - THICKNESS, 200, THICKNESS, COL);
+    }
+
+    public static void drawTop(MyGraphics gfx, Rectangle firstFloor){
+
+        gfx.drawRect(firstFloor.x, firstFloor.y - THICKNESS, firstFloor.width, THICKNESS, COL);
     }
 
     public void update(){
