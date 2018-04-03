@@ -24,6 +24,10 @@ public class MyGraphics{
         drawRect(x, y, 1,1, c);
     }
 
+    public void drawRect(Rectangle rect, Color c){
+        drawRect(rect.x, rect.y, rect.width, rect.height, c);
+    }
+
     public void drawRect(int x, int y, int width, int height, Color c){
 
         assert(x + width <= this.width);

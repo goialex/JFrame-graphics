@@ -9,7 +9,9 @@ public class Game {
     private DeltaTime ticks = new DeltaTime(20); // 20 game ticks per second
 
     private final Floor[] floors;
+    private final int floorWidth = 50;
     private final int floorHeight = 60;
+    private final Rectangle firstFloor = new Rectangle(0, 50, floorWidth, floorHeight);
     private final int nrFloors = 5;
     private final Elev elevator;
 
@@ -19,11 +21,12 @@ public class Game {
         this.input = input;
         this.gfx = gfx;
 
-        elevator = new Elev(new Rectangle(10, 50, 30, 60), nrFloors, floorHeight, new Point(0, 50));
+        elevator = new Elev(firstFloor, nrFloors);
+
         floors = new Floor[nrFloors];
         for(int i = 0; i < nrFloors; i++) {
 
-            floors[i] = new Floor(elevator, i, new Point(0, 50 + i * floorHeight));
+            floors[i] = new Floor(elevator, i, new Rectangle(firstFloor.x, firstFloor.y + (i * firstFloor.height), firstFloor.width, firstFloor.height), input);
         }
     }
 
@@ -59,6 +62,11 @@ public class Game {
             elevator.addDestination(4);
         }
         elevator.update();
+
+        for(Floor instance : floors){
+            instance.update();
+        }
+
     }
 
     private void draw(){

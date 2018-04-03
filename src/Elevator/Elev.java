@@ -8,26 +8,25 @@ public class Elev {
 
     private final int nrFloors;
     private final List<Integer> que = new ArrayList<>();
-    private final int floorHeight;
-    private final Point floorOffset;
+    private Rectangle firstLevel;
     private int lastFloor = 1;
     private Button floorButton[];
     private Rectangle ScreenRepres;
     private Doors doors;
 
-    public Elev(Rectangle ScreenRepres, int nrFloors, int floorHeight, Point floorStart ) {
+    public Elev(Rectangle firstLevel , int nrFloors ) {
 
-        this.floorHeight = floorHeight;
         this.nrFloors = nrFloors;
-        this.floorOffset = floorStart;
+        this.firstLevel = firstLevel;
 
-        floorButton = new Button[nrFloors];
-        for(int i = 0; i < nrFloors; i++){
+//        floorButton = new Button[nrFloors];
+//        for(int i = 0; i < nrFloors; i++){
+//
+//            floorButton[i] = new Button(new setDestinationAction(i));
+//        }
 
-            floorButton[i] = new Button(new setDestinationAction(i));
-        }
+        ScreenRepres = new Rectangle(firstLevel.x + 10, firstLevel.y, firstLevel.width - 20, firstLevel.height);
 
-        this.ScreenRepres = ScreenRepres;
         doors = new Doors(ScreenRepres.height);
     }
 
@@ -70,7 +69,7 @@ public class Elev {
         assert (toAdd <= nrFloors);
         assert (toAdd >= 0);
 
-        if (isBetween(currentFloor(), toAdd, que.get(0))){
+        if (isBetween(elevFloorLevel(), toAdd, que.get(0))){
             que.add(0, toAdd);
             return;
         }
@@ -106,7 +105,7 @@ public class Elev {
         gfx.drawRect(ScreenRepres.x, ScreenRepres.y, 3, ScreenRepres.height, Color.ORANGE);
         gfx.drawRect(ScreenRepres.x, ScreenRepres.y, ScreenRepres.width, 3, Color.ORANGE);
         doors.draw(gfx, new Point(ScreenRepres.x + ScreenRepres.width - 3, ScreenRepres.y), Color.ORANGE);
-        gfx.drawRect(ScreenRepres.x, ScreenRepres.y + ScreenRepres.height - 3, ScreenRepres.width, 3, Color.ORANGE);
+        gfx.drawRect(ScreenRepres.x , ScreenRepres.y + ScreenRepres.height - 3, ScreenRepres.width, 3, Color.ORANGE);
     }
 
     public void update(){
@@ -140,14 +139,17 @@ public class Elev {
         ScreenRepres.y += 2;
     }
 
-    private Point getFloorCoord(int level){
+    private Rectangle getFloorCoord(int level){
 
-        return (new Point(ScreenRepres.x, (level * floorHeight) + floorOffset.y));
+        int xOffset = firstLevel.x;
+        int yOffset = firstLevel.y;
+
+        return (new Rectangle(xOffset, yOffset + (level * firstLevel.height), firstLevel.width, firstLevel.height));
     }
 
-    private int currentFloor(){
+    private int elevFloorLevel(){
 
-        return ((ScreenRepres.y - floorOffset.y) / floorHeight);
+        return ((ScreenRepres.y - firstLevel.y + (ScreenRepres.height / 2)) / firstLevel.height );
     }
 
     private enum Status{
