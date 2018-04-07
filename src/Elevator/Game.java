@@ -7,6 +7,7 @@ public class Game {
     private final MyGraphics gfx;
     private final InputHandler input;
     private DeltaTime ticks = new DeltaTime(20); // 20 game ticks per second
+    DeltaTime fps = new DeltaTime(60); // 60 frames per second
 
     private final Floor[] floors;
     private final int floorWidth = 50;
@@ -37,11 +38,19 @@ public class Game {
 
             ticks.subtract();
 
-            gfx.reset();
             update();
+        }
+
+        fps.update();
+        if (fps.enoughtPassed()) {
+
+            fps.subtract();
+
+            gfx.reset();
             draw();
             gfx.render();
         }
+
     }
 
     private void update(){
@@ -81,6 +90,7 @@ public class Game {
         for (Floor f: floors) {
             f.draw(gfx);
         }
+
         elevator.draw(gfx);
 
         Floor.drawTop(gfx, firstFloor);
@@ -89,9 +99,9 @@ public class Game {
     private void drawBackground(){
 
         Color col1 = new Color(40, 105, 73);
-        int incremental = 3;
+        int increment = 3;
 
-        for (int i = 0; i < gfx.getHeight() - 3; i += incremental) {
+        for (int i = 0; i < gfx.getHeight() - 3; i += increment) {
 
             gfx.drawRect( 0, i, gfx.getWidth(), 5, col1);
                 col1 = new Color(col1.getRed() + 1, col1.getGreen(), col1.getBlue());

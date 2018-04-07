@@ -8,7 +8,6 @@ public class Main {
 
         CustomWindow window = new CustomWindow("Main", 500, 500);
         MainPanel pane = new MainPanel(window);
-        DeltaTime fps = new DeltaTime(60);
 
         try {
             Thread.sleep(100);
@@ -21,12 +20,8 @@ public class Main {
         Game game = new Game(gfx, input);
 
         while (!input.esc.down) {
-            fps.update();
-            if (fps.enoughtPassed()) {
 
-                fps.subtract();
                 game.go();
-            }
         }
 
         window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
